@@ -10,18 +10,25 @@ const Statistics = ({good, neutral, bad}) => {
         return <div>Ei yhtään palautetta annettu</div>
     }
     return (
-        <div>
+        <table>
+            <tbody>
             <Statistic text='hyvä' value={good} text2=''/>
             <Statistic text='neutraali' value={neutral} text2=''/>
             <Statistic text='huono' value={bad} text2=''/>
             <Statistic text='yhteensä' value={good + neutral + bad} text2=''/>
             <Statistic text='keskiarvo' value={(good - bad) / (good + neutral + bad)} text2=''/>
-            <Statistic text='positiivisia' value={good / (good + neutral + bad) * 100} text2='%'/>
-        </div>
+            <Statistic text='positiivisia' value={good / (good + neutral + bad) * 100 + ' %'}/>
+            </tbody>
+        </table>
     )
 }
 
-const Statistic = ({text, value, text2}) => <div>{text} {value} {text2}</div>
+const Statistic = ({text, value}) => (
+    <tr>
+        <td>{text}</td>
+        <td>{value}</td>
+    </tr>
+)
 
 const App = () => {
     const [good, setGood] = useState(0)
