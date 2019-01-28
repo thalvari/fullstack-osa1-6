@@ -5,7 +5,16 @@ const Header = ({text}) => <h3>{text}</h3>
 
 const Button = ({handleClick, text}) => <button onClick={handleClick}>{text}</button>
 
-const Display = ({text, value}) => <div>{text} {value}</div>
+const Statistics = ({good, neutral, bad}) => (
+    <div>
+        <div>hyvä {good}</div>
+        <div>neutraali {neutral}</div>
+        <div>huono {bad}</div>
+        <div>yhteensä {good + neutral + bad}</div>
+        <div>keskiarvo {(good - bad) / (good + neutral + bad)}</div>
+        <div>positiivisia {good / (good + neutral + bad) * 100} %</div>
+    </div>
+)
 
 const App = () => {
     const [good, setGood] = useState(0)
@@ -23,9 +32,7 @@ const App = () => {
             <Button handleClick={handleNeutral} text="neutraali"/>
             <Button handleClick={handleBad} text="huono"/>
             <Header text={'statistiikka'}/>
-            <Display text={'hyvä'} value={good}/>
-            <Display text={'neutraali'} value={neutral}/>
-            <Display text={'huono'} value={bad}/>
+            <Statistics good={good} neutral={neutral} bad={bad}/>
         </div>
     )
 }
